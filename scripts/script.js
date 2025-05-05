@@ -65,3 +65,80 @@ function getComputerChoice() {
   console.log(`Computer Choice: ${computerChoice}`);
   return computerChoice;
 }
+
+// Write the logic to play a single round
+function playRound(humanChoice, computerChoice) {
+  const humanSelection = getHumanChoice();
+  const computerSelection = getComputerChoice();
+}
+
+// Function to evaluate result depending on human/computer choice
+function getResult(humanChoice, computerChoice) {
+  let result;
+  switch (humanChoice) {
+    case "ROCK":
+      /*
+        Win Conditions: "Rock"
+          - Opponent chooses "Scissors"
+        Lose Conditions: "Rock"
+          - Opponent chooses "Paper"
+        Draw Conditions: "Rock"
+          - Opponent chooses "Rock"
+      */
+      switch (computerChoice) {
+        case "SCISSORS":
+          result = "WIN";
+          break;
+        case "PAPER":
+          result = "LOSE";
+          break;
+        case "ROCK":
+          result = "DRAW";
+          break;
+      }
+      break;
+    case "PAPER":
+      /*
+        Win Conditions: "Paper"
+          - Opponent chooses "Rock"
+        Lose Conditions: "Paper"
+          - Opponent chooses "Scissors"
+        Draw Conditions: "Paper"
+          - Opponent chooses "Paper"
+      */
+      switch (computerChoice) {
+        case "ROCK":
+          result = "WIN";
+          break;
+        case "SCISSORS":
+          result = "LOSE";
+          break;
+        case "PAPER":
+          result = "DRAW";
+          break;
+      }
+      break;
+    case "SCISSORS":
+      /*
+        Win Conditions: "Scissors"
+          - Opponent chooses "Paper"
+        Lose Conditions: "Scissors"
+          - Opponent chooses "Rock"
+        Draw Conditions: "Scissors"
+          - Opponent chooses "Scissors"
+      */
+      switch (computerChoice) {
+        case "PAPER":
+          result = "WIN";
+          break;
+        case "ROCK":
+          result = "LOSE";
+          break;
+        case "SCISSORS":
+          result = "DRAW";
+          break;
+      }
+      break;
+  }
+  return result;
+}
