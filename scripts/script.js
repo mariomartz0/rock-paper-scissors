@@ -35,11 +35,8 @@
 // Keep track of the human score and computer score so it can be displayed
 let humanScore = 0;
 let computerScore = 0;
-console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
-// Explain rules to human
-console.log('Choose one of the following: "rock", "paper", "scissors" ');
 
-playRound();
+playGame();
 
 // Get human choice
 function getHumanChoice() {
@@ -70,20 +67,18 @@ function getComputerChoice() {
 
 // Write the logic to play a single round
 function playRound(humanChoice, computerChoice) {
-  const humanSelection = getHumanChoice();
-  const computerSelection = getComputerChoice();
-  const result = getResult(humanSelection, computerSelection);
+  const result = getResult(humanChoice, computerChoice);
   let message;
 
   // Change message based on result & increment winners score
   if (result === "WIN") {
-    message = `You win! ${humanSelection} beats ${computerSelection}.`;
+    message = `You win! ${humanChoice} beats ${computerChoice}.`;
     incrementScore("human");
   } else if (result === "LOSE") {
-    message = `You lose! ${computerSelection} beats ${humanSelection}.`;
+    message = `You lose! ${computerChoice} beats ${humanChoice}.`;
     incrementScore("computer");
   } else if (result === "DRAW") {
-    message = `It's a draw! You both chose ${humanSelection}.`;
+    message = `It's a draw! You both chose ${humanChoice}.`;
   } else {
     message = "Something went wrong!";
   }
@@ -173,4 +168,36 @@ function incrementScore(winner) {
       computerScore += 1;
       break;
   }
+}
+
+// Function to make the game play on for 5 rounds
+function playGame() {
+  // Max number of rounds
+  const MAX_ROUNDS = 5;
+  // For loop to play 5 rounds sequentially
+  for (let round = 1; round <= MAX_ROUNDS; round++) {
+    console.log("****************************************************");
+    // Announce current round
+    console.log(`Round ${round}:`);
+    // Announce current score
+    console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
+    // Explain rules to human
+    console.log('Choose one of the following: "rock", "paper", "scissors" ');
+
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  }
+
+  //Once 5 rounds are completed, evaluate winner and announce it
+  if (humanScore > computerScore) {
+    console.log("Human wins!");
+  } else if (computerScore > humanScore) {
+    console.log("Computer wins");
+  } else {
+    console.log("It's a draw!");
+  }
+
+  console.log("FINAL SCORE:");
+  console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
 }
