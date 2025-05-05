@@ -85,7 +85,7 @@ function playRound(humanChoice, computerChoice) {
   } else if (result === "DRAW") {
     message = `It's a draw! You both chose ${humanChoice}.`;
   } else {
-    message = "Something went wrong!";
+    message = "Something went wrong! You entered an invalid choice.";
   }
 
   console.log(message);
