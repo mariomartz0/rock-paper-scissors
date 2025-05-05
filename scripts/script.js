@@ -1,4 +1,9 @@
 /*
+  Author: Mario Martinez
+  Date: 2025-05-05 
+*/
+
+/*
   The Problem:
     Create a game of Rock Paper Scissors that runs entirely
     through the console. The human is prompted to make a choice
