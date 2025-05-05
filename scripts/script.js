@@ -194,6 +194,8 @@ function playGame() {
     playRound(humanSelection, computerSelection);
   }
 
+  console.log("****************************************************");
+
   //Once 5 rounds are completed, evaluate winner and announce it
   if (humanScore > computerScore) {
     console.log("Human wins!");
