@@ -39,6 +39,8 @@ console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
 // Explain rules to human
 console.log('Choose one of the following: "rock", "paper", "scissors" ');
 
+playRound();
+
 // Get human choice
 function getHumanChoice() {
   const humanChoice = prompt("Enter your choice:", "").toUpperCase();
@@ -70,6 +72,20 @@ function getComputerChoice() {
 function playRound(humanChoice, computerChoice) {
   const humanSelection = getHumanChoice();
   const computerSelection = getComputerChoice();
+  const result = getResult(humanSelection, computerSelection);
+  let message;
+
+  if (result === "WIN") {
+    message = `You win! ${humanSelection} beats ${computerSelection}.`;
+  } else if (result === "LOSE") {
+    message = `You lose! ${computerSelection} beats ${humanSelection}.`;
+  } else if (result === "DRAW") {
+    message = `It's a draw! You both chose ${humanSelection}.`;
+  } else {
+    message = "Something went wrong!";
+  }
+
+  console.log(message);
 }
 
 // Function to evaluate result depending on human/computer choice
