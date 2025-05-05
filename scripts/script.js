@@ -75,10 +75,13 @@ function playRound(humanChoice, computerChoice) {
   const result = getResult(humanSelection, computerSelection);
   let message;
 
+  // Change message based on result & increment winners score
   if (result === "WIN") {
     message = `You win! ${humanSelection} beats ${computerSelection}.`;
+    incrementScore("human");
   } else if (result === "LOSE") {
     message = `You lose! ${computerSelection} beats ${humanSelection}.`;
+    incrementScore("computer");
   } else if (result === "DRAW") {
     message = `It's a draw! You both chose ${humanSelection}.`;
   } else {
@@ -157,4 +160,17 @@ function getResult(humanChoice, computerChoice) {
       break;
   }
   return result;
+}
+
+// Increments the score of the winner
+function incrementScore(winner) {
+  // Identifies which score to increment based on string passed to function
+  switch (winner) {
+    case "human":
+      humanScore += 1;
+      break;
+    case "computer":
+      computerScore += 1;
+      break;
+  }
 }
