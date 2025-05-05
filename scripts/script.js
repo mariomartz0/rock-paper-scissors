@@ -31,6 +31,13 @@
       - Opponent chooses "Scissors"
 
 */
+// Keep track of the player score and computer score so it can be displayed
+// NOTE: Guidelines suggested naming playerScore humanScore instead,
+//       however, I chose playerScore instead to keep it consistent with
+//       the other variable and function names.
+let playerScore = 0;
+let computerScore = 0;
+console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}`);
 // Explain rules to player
 console.log('Choose one of the following: "rock", "paper", "scissors" ');
 
