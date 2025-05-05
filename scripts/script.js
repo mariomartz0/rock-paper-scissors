@@ -1,10 +1,10 @@
 /*
   The Problem:
     Create a game of Rock Paper Scissors that runs entirely
-    through the console. The player is prompted to make a choice
+    through the console. The human is prompted to make a choice
     between "Rock", "Paper", and "Scissors" and then the computer
     will randomly make a choice out of the 3 options as well. Once
-    the player and the computer have both made a choice, their
+    the human and the computer have both made a choice, their
     choices will be compared and based on the game logic, the winner
     will be returned/announced. 
     
@@ -31,21 +31,19 @@
       - Opponent chooses "Scissors"
 
 */
-// Keep track of the player score and computer score so it can be displayed
-// NOTE: Guidelines suggested naming playerScore humanScore instead,
-//       however, I chose playerScore instead to keep it consistent with
-//       the other variable and function names.
-let playerScore = 0;
+
+// Keep track of the human score and computer score so it can be displayed
+let humanScore = 0;
 let computerScore = 0;
-console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}`);
-// Explain rules to player
+console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
+// Explain rules to human
 console.log('Choose one of the following: "rock", "paper", "scissors" ');
 
-// Get player choice
-function getPlayerChoice() {
-  const playerChoice = prompt("Enter your choice:", "").toUpperCase();
-  console.log(`Player Choice: ${playerChoice}`);
-  return playerChoice;
+// Get human choice
+function getHumanChoice() {
+  const humanChoice = prompt("Enter your choice:", "").toUpperCase();
+  console.log(`Human Choice: ${humanChoice}`);
+  return humanChoice;
 }
 
 // Get computer choice
@@ -67,6 +65,3 @@ function getComputerChoice() {
   console.log(`Computer Choice: ${computerChoice}`);
   return computerChoice;
 }
-
-getPlayerChoice();
-getComputerChoice();
