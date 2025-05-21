@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.results {
+  text-align: center;
+}
+
 .win {
   color: rgb(17, 231, 17);
 }
