@@ -1,6 +1,6 @@
 <!--
   Author: Mario Martinez
-  Date: 2025-05-05 
+  Date: 2025-05-21
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -8,14 +8,21 @@
     <meta charset="UTF-8" />
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="#" />
+    <script src="./scripts/script.js" defer></script>
   </head>
 
   <body>
-    <h1>Rock Paper Scissors</h1>
-    <p>
-      This game is played entirely in the console. Open the developer tools to
-      play.
-    </p>
-    <script src="./scripts/script.js"></script>
+    <div class="container">
+      <h1>Rock Paper Scissors</h1>
+      <p>
+        <strong>Rules:</strong> Pick between <em>Rock</em>, <em>Paper</em>, or
+        <em>Scissors</em> by clicking a button below. The computer will then
+        automatically choose their own option and a winner will be evaluated
+        based on both of your choices.
+      </p>
+      <div class="buttons">
+        <button>Rock</button><button>Paper</button><button>Scissors</button>
+      </div>
+    </div>
   </body>
 </html>
