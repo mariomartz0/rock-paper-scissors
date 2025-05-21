@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.win {
+  color: rgb(17, 231, 17);
+}
+
+.lose {
+  color: red;
+}
+
+.matchup {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.matchup div {
+  width: 100px;
+}
+
+h2,
+h4 {
+  text-decoration: underline;
+}
