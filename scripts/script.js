@@ -41,6 +41,70 @@
 let humanScore = 0;
 let computerScore = 0;
 
+function displayResults(playerChoice, computerChoice, message, result) {
+  const resultsDiv = document.querySelector(".results");
+  while (resultsDiv.firstChild) {
+    resultsDiv.removeChild(resultsDiv.firstChild);
+  }
+
+  const resultsH2 = document.createElement("h2");
+  resultsH2.textContent = "Results";
+  resultsDiv.appendChild(resultsH2);
+
+  const resultsH3 = document.createElement("h3");
+  resultsH3.textContent = message;
+  if (result === "WIN") {
+    resultsH3.classList.add("win");
+  } else if (result === "LOSE") {
+    resultsH3.classList.add("lose");
+  }
+  resultsDiv.appendChild(resultsH3);
+
+  const matchupDiv = document.createElement("div");
+  matchupDiv.classList.add("matchup");
+  resultsDiv.appendChild(matchupDiv);
+
+  const playerChoiceDiv = document.createElement("div");
+  playerChoiceDiv.classList.add("player-choice");
+  matchupDiv.appendChild(playerChoiceDiv);
+
+  const playerH4 = document.createElement("h4");
+  playerH4.textContent = "Player";
+  playerChoiceDiv.appendChild(playerH4);
+
+  const playerChoicePara = document.createElement("p");
+  playerChoicePara.textContent = playerChoice;
+  playerChoiceDiv.appendChild(playerChoicePara);
+
+  const playerScorePara = document.createElement("p");
+  playerScorePara.textContent = `Score: ${humanScore}`;
+  playerChoiceDiv.appendChild(playerScorePara);
+
+  const vsDiv = document.createElement("div");
+  vsDiv.classList.add("vs");
+  matchupDiv.appendChild(vsDiv);
+
+  const vsPara = document.createElement("p");
+  vsPara.textContent = "VS";
+  vsDiv.appendChild(vsPara);
+
+  const computerChoiceDiv = document.createElement("div");
+  computerChoiceDiv.classList.add("computer-choice");
+  matchupDiv.appendChild(computerChoiceDiv);
+
+  const computerH4 = document.createElement("h4");
+  computerH4.textContent = "Computer";
+  computerChoiceDiv.appendChild(computerH4);
+
+  const computerChoicePara = document.createElement("p");
+  computerChoicePara.textContent = computerChoice;
+  computerChoiceDiv.appendChild(computerChoicePara);
+
+  const computerScorePara = document.createElement("p");
+  computerScorePara.textContent = `Score: ${computerScore}`;
+  computerChoiceDiv.appendChild(computerScorePara);
+}
+
 // Using event delegation to avoid adding an event listener to every button
 const buttons = document.querySelector(".buttons");
 
@@ -63,7 +127,6 @@ buttons.addEventListener("click", (event) => {
 // Get human choice
 function getHumanChoice(choice) {
   const humanChoice = choice;
-  console.log(`Human Choice: ${humanChoice}`);
   return humanChoice;
 }
 
@@ -83,13 +146,12 @@ function getComputerChoice() {
       computerChoice = "SCISSORS";
       break;
   }
-  console.log(`Computer Choice: ${computerChoice}`);
+
   return computerChoice;
 }
 
 // Write the logic to play a single round
 function playRound(humanChoice, computerChoice) {
-  console.log(humanChoice, computerChoice);
   const result = getResult(humanChoice, computerChoice);
   let message;
 
@@ -106,7 +168,8 @@ function playRound(humanChoice, computerChoice) {
     message = "Something went wrong! You entered an invalid choice.";
   }
 
-  console.log(message);
+  displayResults(humanChoice, computerChoice, message, result);
+  checkForWinner();
 }
 
 // Function to evaluate result depending on human/computer choice
@@ -193,36 +256,25 @@ function incrementScore(winner) {
   }
 }
 
-// Function to make the game play on for 5 rounds
-// function playGame() {
-//   // Max number of rounds
-//   const MAX_ROUNDS = 5;
-//   // For loop to play 5 rounds sequentially
-//   for (let round = 1; round <= MAX_ROUNDS; round++) {
-//     console.log("****************************************************");
-//     // Announce current round
-//     console.log(`Round ${round}:`);
-//     // Announce current score
-//     console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
-//     // Explain rules to human
-//     console.log('Choose one of the following: "rock", "paper", "scissors" ');
+function checkForWinner() {
+  if (humanScore >= 5) {
+    return announceOverallWinner("PLAYER");
+  } else if (computerScore >= 5) {
+    return announceOverallWinner("COMPUTER");
+  }
+}
 
-//     const humanSelection = getHumanChoice();
-//     const computerSelection = getComputerChoice();
-//     playRound(humanSelection, computerSelection);
-//   }
+function announceOverallWinner(winner) {
+  const container = document.querySelector(".container");
 
-//   console.log("****************************************************");
+  const buttons = document.querySelector(".buttons");
+  container.removeChild(buttons);
 
-//   //Once 5 rounds are completed, evaluate winner and announce it
-//   if (humanScore > computerScore) {
-//     console.log("Human wins!");
-//   } else if (computerScore > humanScore) {
-//     console.log("Computer wins");
-//   } else {
-//     console.log("It's a draw!");
-//   }
+  const overallWinnerH2 = document.createElement("h2");
+  overallWinnerH2.textContent = `${winner} WINS! They were the first to reach a score of 5.`;
+  container.appendChild(overallWinnerH2);
 
-//   console.log("FINAL SCORE:");
-//   console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
-// }
+  const overallWinnerPara = document.createElement("p");
+  overallWinnerPara.textContent = "Please refresh the page to play again.";
+  container.appendChild(overallWinnerPara);
+}
